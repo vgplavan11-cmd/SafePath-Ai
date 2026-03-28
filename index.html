@@ -1,0 +1,571 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafePath AI</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+
+  <!-- SIDEBAR NAV -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">&#128737;</div>
+      <span class="brand-name">SafePath<span class="brand-ai">AI</span></span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#" class="snav-item active" data-page="home">
+        <span class="snav-icon">&#8962;</span>
+        <span class="snav-label">Home</span>
+      </a>
+      <a href="#" class="snav-item" data-page="fakecall">
+        <span class="snav-icon">&#128222;</span>
+        <span class="snav-label">Fake Call</span>
+      </a>
+      <a href="#" class="snav-item" data-page="safemap">
+        <span class="snav-icon">&#128506;</span>
+        <span class="snav-label">Safe Map</span>
+      </a>
+      <a href="#" class="snav-item" data-page="voiceguard">
+        <span class="snav-icon">&#127897;</span>
+        <span class="snav-label">Voice Guard</span>
+      </a>
+      <a href="#" class="snav-item" data-page="livetrack">
+        <span class="snav-icon">&#128225;</span>
+        <span class="snav-label">Live Track</span>
+      </a>
+      <a href="#" class="snav-item" data-page="guardian">
+        <span class="snav-icon">&#128737;</span>
+        <span class="snav-label">Guardian</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="sos-sidebar" id="sosBtn">
+        <span class="sos-ring"></span>
+        <span>SOS</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MOBILE TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-brand">&#128737; <span>SafePath<b>AI</b></span></div>
+    <div class="topbar-nav">
+      <a href="#" class="tnav-item active" data-page="home">Home</a>
+      <a href="#" class="tnav-item" data-page="fakecall">Call</a>
+      <a href="#" class="tnav-item" data-page="safemap">Map</a>
+      <a href="#" class="tnav-item" data-page="voiceguard">Voice</a>
+      <a href="#" class="tnav-item" data-page="livetrack">Track</a>
+      <a href="#" class="tnav-item" data-page="guardian">Guard</a>
+    </div>
+    <button class="sos-top" id="sosBtnMobile">SOS</button>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- HOME -->
+    <section id="page-home" class="page active">
+      <div class="hero">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          AI-Powered Women Safety Platform
+        </div>
+        <h1 class="hero-title">
+          Your Safety,<br/>
+          <span class="hero-highlight">Intelligently</span><br/>
+          <span class="hero-sub-word">Guarded.</span>
+        </h1>
+        <p class="hero-desc">
+          SafePath AI combines real-time GPS, voice detection, and AI safety scoring
+          to keep you protected &mdash; anywhere, anytime.
+        </p>
+        <div class="hero-cta">
+          <button class="btn btn-primary" data-page="safemap">Explore Safe Map</button>
+          <button class="btn btn-ghost" data-page="voiceguard">Try Voice Guard</button>
+        </div>
+        <div class="hero-chips">
+          <span class="chip">&#128737; AI Safety Score</span>
+          <span class="chip">&#128225; Live GPS</span>
+          <span class="chip">&#127897; Voice Trigger</span>
+          <span class="chip">&#128506; Route Finder</span>
+        </div>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card" data-page="fakecall">
+          <div class="fc-number">01</div>
+          <div class="fc-icon-wrap"><span class="feature-icon">&#128222;</span></div>
+          <h3>Fake Call</h3>
+          <p>Simulate an incoming call to escape uncomfortable situations discreetly.</p>
+          <span class="feature-link">Try it <span class="arrow">&rarr;</span></span>
+          <div class="fc-glow"></div>
+        </div>
+        <div class="feature-card" data-page="safemap">
+          <div class="fc-number">02</div>
+          <div class="fc-icon-wrap"><span class="feature-icon">&#128506;</span></div>
+          <h3>Safe Map</h3>
+          <p>View AI-scored safety zones and report unsafe areas in real time.</p>
+          <span class="feature-link">Explore <span class="arrow">&rarr;</span></span>
+          <div class="fc-glow"></div>
+        </div>
+        <div class="feature-card" data-page="voiceguard">
+          <div class="fc-number">03</div>
+          <div class="fc-icon-wrap"><span class="feature-icon">&#127897;</span></div>
+          <h3>Voice Guard</h3>
+          <p>Say &ldquo;help me&rdquo; &mdash; AI listens and triggers emergency actions instantly.</p>
+          <span class="feature-link">Activate <span class="arrow">&rarr;</span></span>
+          <div class="fc-glow"></div>
+        </div>
+        <div class="feature-card" data-page="livetrack">
+          <div class="fc-number">04</div>
+          <div class="fc-icon-wrap"><span class="feature-icon">&#128225;</span></div>
+          <h3>Live Tracking</h3>
+          <p>Real-time GPS with path trail, zone alerts and emergency sharing.</p>
+          <span class="feature-link">Track <span class="arrow">&rarr;</span></span>
+          <div class="fc-glow"></div>
+        </div>
+        <div class="feature-card feature-card--ai">
+          <div class="fc-number">05</div>
+          <div class="fc-icon-wrap"><span class="feature-icon">&#129302;</span></div>
+          <h3>AI Scoring</h3>
+          <p>Safety scores from lighting, crowd density, and time-of-day factors.</p>
+          <span class="feature-link">Learn more <span class="arrow">&rarr;</span></span>
+          <div class="fc-glow"></div>
+        </div>
+        <div class="feature-card" data-page="guardian">
+          <div class="fc-number">06</div>
+          <div class="fc-icon-wrap"><span class="feature-icon">&#128737;</span></div>
+          <h3>Guardian Mode</h3>
+          <p>Set a safety timer &mdash; if you don&rsquo;t check in, emergency actions trigger automatically.</p>
+          <span class="feature-link">Activate <span class="arrow">&rarr;</span></span>
+          <div class="fc-glow"></div>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat"><span class="stat-num">AI</span><span class="stat-label">Powered Scoring</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">24/7</span><span class="stat-label">Always Available</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Private &amp; Secure</span></div>
+      </div>
+    </section>
+
+    <!-- FAKE CALL -->
+    <section id="page-fakecall" class="page">
+      <div class="page-header">
+        <div class="page-header-icon">&#128222;</div>
+        <div>
+          <h2 class="page-title">Fake Call</h2>
+          <p class="page-subtitle">Simulate an incoming call to exit any uncomfortable situation.</p>
+        </div>
+      </div>
+      <div class="fakecall-container">
+        <div class="panel">
+          <div class="panel-label">Caller Name</div>
+          <input type="text" id="callerNameInput" class="text-input" placeholder="e.g. Mom, Friend, Doctor" value="Mom" />
+          <div class="panel-label" style="margin-top:20px">Call Delay</div>
+          <div class="delay-options">
+            <button class="delay-btn active" data-delay="0">Now</button>
+            <button class="delay-btn" data-delay="5">5s</button>
+            <button class="delay-btn" data-delay="10">10s</button>
+            <button class="delay-btn" data-delay="30">30s</button>
+          </div>
+          <button class="btn btn-primary btn-full" id="triggerCallBtn">&#128222; Trigger Fake Call</button>
+        </div>
+        <div class="panel">
+          <div class="panel-label">Quick Select</div>
+          <div class="quick-btns">
+            <button class="quick-btn" data-name="Mom">&#128105; Mom</button>
+            <button class="quick-btn" data-name="Dad">&#128104; Dad</button>
+            <button class="quick-btn" data-name="Best Friend">&#128111; Best Friend</button>
+            <button class="quick-btn" data-name="Doctor">&#128104;&#8205;&#9877; Doctor</button>
+            <button class="quick-btn" data-name="Boss">&#128188; Boss</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SAFE MAP -->
+    <section id="page-safemap" class="page">
+      <div class="page-header">
+        <div class="page-header-icon">&#128506;</div>
+        <div>
+          <h2 class="page-title">Safe Map &mdash; Coimbatore</h2>
+          <p class="page-subtitle">AI-scored safety zones with street-level detail.</p>
+        </div>
+      </div>
+      <div class="map-toolbar">
+        <select id="areaSelect" class="text-input city-select">
+          <option value="">&#128205; Jump to Area</option>
+          <option>Gandhipuram Bus Stand</option>
+          <option>RS Puram DB Road</option>
+          <option>Peelamedu Main Road</option>
+          <option>Singanallur Bus Stand</option>
+          <option>Ukkadam Area</option>
+          <option>Saibaba Colony</option>
+          <option>Race Course Road</option>
+          <option>Town Hall Area</option>
+          <option>Kovaipudur Hills</option>
+          <option>Perur Temple Road</option>
+          <option>Hopes College Junction</option>
+          <option>Tidel Park IT Zone</option>
+          <option>Kavundampalayam Road</option>
+          <option>Podanur Junction</option>
+          <option>Vadavalli Isolated Lane</option>
+        </select>
+        <button class="btn btn-night" id="nightModeBtn">&#127769; Night Mode</button>
+        <button class="btn btn-danger" id="reportUnsafeBtn">&#9888; Report Unsafe</button>
+      </div>
+      <div class="map-legend">
+        <span class="legend-item"><span class="dot green"></span> Safe (&ge;7)</span>
+        <span class="legend-item"><span class="dot yellow"></span> Medium (4&ndash;6)</span>
+        <span class="legend-item"><span class="dot red"></span> Risky (&lt;4)</span>
+        <span class="legend-item legend-sep">|</span>
+        <span class="legend-item"><span class="dot purple"></span> Sub-street</span>
+        <span id="nightBadge" class="night-badge hidden">&#127769; Night Mode Active</span>
+      </div>
+      <div id="map"></div>
+      <div class="route-card" id="routeCard">
+        <div class="route-card-header">
+          <span class="route-card-title">&#128506; Safest Route Finder</span>
+          <button class="route-toggle-btn" id="routeToggleBtn">&#9650;</button>
+        </div>
+        <div class="route-card-body" id="routeCardBody">
+          <div class="route-inputs">
+            <div class="route-input-wrap">
+              <span class="route-input-icon">&#128994;</span>
+              <input type="text" id="routeFrom" class="route-input" placeholder="From &mdash; area name or address" list="areaList" />
+              <button class="use-location-btn" id="useMyLocationBtn">&#128205;</button>
+            </div>
+            <div class="route-input-wrap">
+              <span class="route-input-icon">&#128308;</span>
+              <input type="text" id="routeTo" class="route-input" placeholder="To &mdash; destination" list="areaList" />
+            </div>
+          </div>
+          <datalist id="areaList">
+            <option value="Gandhipuram Bus Stand"><option value="RS Puram DB Road">
+            <option value="Peelamedu Main Road"><option value="Singanallur Bus Stand">
+            <option value="Ukkadam Area"><option value="Saibaba Colony">
+            <option value="Race Course Road"><option value="Town Hall Area">
+            <option value="Kovaipudur Hills"><option value="Perur Temple Road">
+            <option value="Hopes College Junction"><option value="Tidel Park IT Zone">
+            <option value="Kavundampalayam Road"><option value="Podanur Junction">
+            <option value="Vadavalli Isolated Lane">
+          </datalist>
+          <div class="route-prefs">
+            <label class="pref-toggle">
+              <input type="checkbox" id="preferSafety" checked />
+              <span class="pref-slider"></span>
+              <span class="pref-label">Prefer Safety over Speed</span>
+            </label>
+          </div>
+          <div class="route-actions">
+            <button class="btn btn-primary btn-route" id="findRouteBtn">&#128269; Find Safest Route</button>
+            <button class="btn btn-secondary btn-route" id="clearRouteBtn">&times; Clear</button>
+          </div>
+          <div id="routeResult" class="route-result hidden"></div>
+        </div>
+      </div>
+      <div id="areaInfoPanel" class="area-info-panel hidden">
+        <button class="close-panel" id="closePanelBtn">&times;</button>
+        <div id="areaInfoContent"></div>
+      </div>
+    </section>
+
+    <!-- VOICE GUARD -->
+    <section id="page-voiceguard" class="page">
+      <div class="page-header">
+        <div class="page-header-icon">&#127897;</div>
+        <div>
+          <h2 class="page-title">Voice Guard</h2>
+          <p class="page-subtitle">Speak a trigger word and SafePath AI responds instantly.</p>
+        </div>
+      </div>
+      <div class="vg-container">
+        <div class="vg-mic-card">
+          <button id="micBtn" class="mic-btn" aria-label="Start listening">
+            <span class="mic-icon">&#127897;</span>
+            <div class="mic-rings"><span></span><span></span><span></span></div>
+          </button>
+          <p id="micStatus" class="mic-status idle">Tap to start listening</p>
+          <p id="micTranscript" class="mic-transcript"></p>
+        </div>
+        <div class="panel">
+          <div class="panel-label">Trigger Words</div>
+          <div class="trigger-chips">
+            <span class="trigger-chip">&ldquo;help&rdquo;</span>
+            <span class="trigger-chip">&ldquo;help me&rdquo;</span>
+            <span class="trigger-chip">&ldquo;danger&rdquo;</span>
+            <span class="trigger-chip">&ldquo;i am in danger&rdquo;</span>
+            <span class="trigger-chip">&ldquo;save me&rdquo;</span>
+          </div>
+        </div>
+        <div class="vg-tracking-card hidden" id="trackingCard">
+          <div class="tracking-header">
+            <span class="tracking-dot"></span>
+            <span>Live Tracking Enabled for Safety</span>
+          </div>
+          <div id="trackingCoords" class="tracking-coords">Acquiring location...</div>
+          <div id="locationHistory" class="location-history"></div>
+          <button class="btn btn-secondary btn-sm" id="stopTrackingBtn">Stop Tracking</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE TRACK -->
+    <section id="page-livetrack" class="page">
+      <div class="page-header">
+        <div class="page-header-icon">&#128225;</div>
+        <div>
+          <h2 class="page-title">Live GPS Tracking</h2>
+          <p class="page-subtitle">Real-time location monitoring with safety zone alerts.</p>
+        </div>
+        <div class="lt-status-pill" id="ltStatusPill">
+          <span class="lt-status-dot off"></span>
+          <span id="ltStatusText">Tracking OFF</span>
+        </div>
+      </div>
+      <div class="lt-container">
+        <div class="panel">
+          <div class="lt-controls">
+            <button class="btn btn-primary" id="startTrackBtn">&#9679; Start Live Tracking</button>
+            <button class="btn btn-secondary" id="stopTrackBtn" disabled>&#9632; Stop Tracking</button>
+            <button class="btn btn-secondary" id="shareLocationBtn" disabled>&#128228; Share Location</button>
+          </div>
+          <div class="lt-coords-row" id="ltCoordsRow">
+            <div class="lt-coord-box"><span class="lt-coord-label">Latitude</span><span class="lt-coord-val" id="ltLat">&mdash;</span></div>
+            <div class="lt-coord-box"><span class="lt-coord-label">Longitude</span><span class="lt-coord-val" id="ltLng">&mdash;</span></div>
+            <div class="lt-coord-box"><span class="lt-coord-label">Accuracy</span><span class="lt-coord-val" id="ltAccuracy">&mdash;</span></div>
+            <div class="lt-coord-box"><span class="lt-coord-label">Points</span><span class="lt-coord-val" id="ltPoints">0</span></div>
+          </div>
+        </div>
+        <div class="lt-zone-alert hidden" id="ltZoneAlert">
+          <span class="lt-zone-icon">&#9888;</span>
+          <div><strong>Warning: Low Safety Zone Detected</strong><p id="ltZoneMsg">You are entering an area with low safety score.</p></div>
+          <button class="lt-zone-close" id="ltZoneClose">&times;</button>
+        </div>
+        <div id="ltMap" class="lt-map"></div>
+        <div class="panel lt-history-card">
+          <div class="lt-history-header">
+            <span class="lt-history-title">&#128205; Location History</span>
+            <button class="btn btn-secondary btn-sm" id="clearTrailBtn">Clear Trail</button>
+          </div>
+          <div id="ltHistory" class="lt-history-list">
+            <p class="lt-history-empty">No locations recorded yet. Start tracking to begin.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUARDIAN MODE -->
+    <section id="page-guardian" class="page">
+      <div class="page-header">
+        <div class="page-header-icon gm-header-icon">&#128737;</div>
+        <div>
+          <h2 class="page-title">Virtual Guardian Mode</h2>
+          <p class="page-subtitle">Set a safety timer &mdash; auto-emergency triggers if you don&rsquo;t check in.</p>
+        </div>
+        <div class="gm-status-pill" id="gmStatusPill">
+          <span class="gm-status-dot" id="gmStatusDot"></span>
+          <span id="gmStatusText">Inactive</span>
+        </div>
+      </div>
+
+      <!-- SETUP CARD (shown when inactive) -->
+      <div class="gm-setup-card" id="gmSetupCard">
+        <div class="gm-shield-wrap">
+          <div class="gm-shield-bg">
+            <span class="gm-shield-icon">&#128737;</span>
+            <div class="gm-shield-ring r1"></div>
+            <div class="gm-shield-ring r2"></div>
+            <div class="gm-shield-ring r3"></div>
+          </div>
+        </div>
+        <h3 class="gm-setup-title">How long should I watch over you?</h3>
+        <p class="gm-setup-desc">Choose a duration. When the timer ends, you&rsquo;ll be asked to confirm you&rsquo;re safe. No response triggers emergency actions automatically.</p>
+        <div class="gm-time-options">
+          <button class="gm-time-btn active" data-mins="5">
+            <span class="gm-time-num">5</span>
+            <span class="gm-time-unit">min</span>
+          </button>
+          <button class="gm-time-btn" data-mins="10">
+            <span class="gm-time-num">10</span>
+            <span class="gm-time-unit">min</span>
+          </button>
+          <button class="gm-time-btn" data-mins="15">
+            <span class="gm-time-num">15</span>
+            <span class="gm-time-unit">min</span>
+          </button>
+          <button class="gm-time-btn" data-mins="30">
+            <span class="gm-time-num">30</span>
+            <span class="gm-time-unit">min</span>
+          </button>
+        </div>
+        <button class="btn btn-guardian btn-full" id="gmStartBtn">&#128737; Start Guardian Mode</button>
+      </div>
+
+      <!-- ACTIVE CARD (shown when running) -->
+      <div class="gm-active-card hidden" id="gmActiveCard">
+        <div class="gm-active-header">
+          <div class="gm-pulse-shield">
+            <span>&#128737;</span>
+            <div class="gm-pulse-ring"></div>
+          </div>
+          <div>
+            <div class="gm-active-title">Guardian Mode Active</div>
+            <div class="gm-active-sub">You are being monitored for safety</div>
+          </div>
+        </div>
+
+        <!-- Circular countdown -->
+        <div class="gm-timer-wrap">
+          <svg class="gm-ring-svg" viewBox="0 0 120 120">
+            <circle class="gm-ring-bg" cx="60" cy="60" r="52"/>
+            <circle class="gm-ring-fill" id="gmRingFill" cx="60" cy="60" r="52"/>
+          </svg>
+          <div class="gm-timer-inner">
+            <span class="gm-timer-display" id="gmTimerDisplay">05:00</span>
+            <span class="gm-timer-label">remaining</span>
+          </div>
+        </div>
+
+        <!-- Live status row -->
+        <div class="gm-info-row">
+          <div class="gm-info-box">
+            <span class="gm-info-icon">&#128205;</span>
+            <span class="gm-info-label">Location</span>
+            <span class="gm-info-val" id="gmLocation">Acquiring...</span>
+          </div>
+          <div class="gm-info-box">
+            <span class="gm-info-icon">&#128737;</span>
+            <span class="gm-info-label">Safety Status</span>
+            <span class="gm-info-val" id="gmSafetyStatus">Monitoring</span>
+          </div>
+          <div class="gm-info-box">
+            <span class="gm-info-icon">&#9201;</span>
+            <span class="gm-info-label">Started</span>
+            <span class="gm-info-val" id="gmStartTime">&mdash;</span>
+          </div>
+        </div>
+
+        <button class="btn btn-secondary btn-full" id="gmStopBtn">&#9632; Stop Guardian Mode</button>
+      </div>
+
+      <!-- LOG CARD -->
+      <div class="gm-log-card panel" id="gmLogCard">
+        <div class="panel-label">Activity Log</div>
+        <div id="gmLog" class="gm-log-list">
+          <p class="gm-log-empty">No activity yet. Start Guardian Mode to begin.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- GUARDIAN SAFETY CHECK MODAL -->
+  <div id="guardianCheckModal" class="modal-overlay hidden">
+    <div class="modal guardian-check-modal">
+      <div class="gc-shield-icon">&#128737;</div>
+      <h3>Are you safe?</h3>
+      <p>Guardian Mode timer has ended. Please confirm you are safe.</p>
+      <div class="gc-countdown-wrap">
+        <span class="gc-countdown-label">Auto-emergency in</span>
+        <span id="gcCountdown" class="gc-countdown-num">10</span>
+        <span class="gc-countdown-label">seconds</span>
+      </div>
+      <div class="modal-actions" style="justify-content:center;gap:16px;margin-top:24px">
+        <button class="btn btn-primary btn-lg" id="gcYesBtn">&#10003; Yes, I&rsquo;m Safe</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EMERGENCY OVERLAY -->
+  <div id="emergencyOverlay" class="emergency-overlay hidden">
+    <div class="emergency-content">
+      <div class="emergency-icon">&#128680;</div>
+      <h2>Emergency Detected!</h2>
+      <p id="emergencyWord" class="emergency-word"></p>
+      <p class="emergency-sub">Activating fake call and live location tracking...</p>
+      <button class="btn btn-danger" id="dismissEmergencyBtn">I&rsquo;m Safe Now</button>
+    </div>
+  </div>
+
+  <!-- INCOMING CALL -->
+  <div id="callOverlay" class="call-overlay hidden">
+    <div class="call-screen">
+      <div class="call-top">
+        <p class="call-status" id="callStatus">Incoming Call...</p>
+        <div class="caller-avatar" id="callerAvatar">&#128105;</div>
+        <h2 class="caller-name" id="callerNameDisplay">Mom</h2>
+        <p class="caller-sub">Mobile</p>
+      </div>
+      <div class="call-actions">
+        <div class="call-btn-wrap">
+          <button class="call-btn reject" id="rejectBtn"><span>&#128245;</span></button>
+          <p class="call-btn-label">Decline</p>
+        </div>
+        <div class="call-btn-wrap">
+          <button class="call-btn accept" id="acceptBtn"><span>&#128222;</span></button>
+          <p class="call-btn-label">Accept</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVE CALL -->
+  <div id="activeCallOverlay" class="call-overlay hidden">
+    <div class="call-screen active-call">
+      <div class="call-top">
+        <p class="call-status">Connected</p>
+        <div class="caller-avatar" id="activeCallerAvatar">&#128105;</div>
+        <h2 class="caller-name" id="activeCallerName">Mom</h2>
+        <p class="call-timer" id="callTimer">00:00</p>
+      </div>
+      <div class="active-call-actions">
+        <button class="active-btn mute" id="muteBtn">&#128263;<span>Mute</span></button>
+        <button class="active-btn speaker" id="speakerBtn">&#128266;<span>Speaker</span></button>
+        <button class="active-btn end-call" id="endCallBtn">&#128245;<span>End</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- REPORT MODAL -->
+  <div id="reportModal" class="modal-overlay hidden">
+    <div class="modal">
+      <h3>Report Unsafe Area</h3>
+      <p>Click on the map to mark an unsafe location, or describe it below.</p>
+      <input type="text" id="reportAreaName" class="text-input" placeholder="Area name (e.g. Park Street)" />
+      <select id="reportReason" class="text-input">
+        <option value="Poor lighting">Poor lighting</option>
+        <option value="Less crowd">Less crowd</option>
+        <option value="Suspicious activity">Suspicious activity</option>
+        <option value="No CCTV coverage">No CCTV coverage</option>
+        <option value="Isolated location">Isolated location</option>
+      </select>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="cancelReportBtn">Cancel</button>
+        <button class="btn btn-danger" id="submitReportBtn">Submit Report</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOS MODAL -->
+  <div id="sosModal" class="modal-overlay hidden">
+    <div class="modal sos-modal">
+      <div class="sos-icon">&#128682;</div>
+      <h3>SOS Alert</h3>
+      <p>In a real app, this would send your location to emergency contacts and call 911.</p>
+      <p class="sos-demo-note">This is a demo &mdash; no real alert is sent.</p>
+      <button class="btn btn-primary" id="closeSosBtn">I&rsquo;m Safe Now</button>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
